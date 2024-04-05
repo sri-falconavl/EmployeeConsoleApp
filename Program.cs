@@ -31,6 +31,7 @@ namespace Srikanth
 				Console.WriteLine("4. View Employee");
 				Console.WriteLine("5. View All");
 				Console.WriteLine("6. Sort Employees");
+				Console.WriteLine("7. Exit");
 				Console.Write("Enter your choice: ");
 				string userInput;
 				int Choice = 0;
@@ -39,12 +40,12 @@ namespace Srikanth
 				{
 					userInput = Console.ReadLine();
 					isValidResponse = int.TryParse(userInput, out Choice);
-					if (!isValidResponse || Choice < 1 || Choice > 6)
+					if (!isValidResponse || Choice < 1 || Choice > 7)
 					{
-						Console.WriteLine("Please enter a valid number between 1 to 6");
+						Console.WriteLine("Please enter a valid number between 1 to 7");
 						Console.Write("Enter your choice: ");
 					}
-				} while (!isValidResponse || Choice < 1 || Choice > 6);
+				} while (!isValidResponse || Choice < 1 || Choice > 7);
 				switch (Choice)
 				{
 					case 1:
@@ -162,7 +163,7 @@ namespace Srikanth
 								Console.Write("Enter new Employee Department: ");
 								string newEmpDept = Console.ReadLine();
 								Employee editDeptEmp = employees.Find(x => x.Id == editEmpId);
-								editDeptEmp.Role = newEmpDept;
+								editDeptEmp.Department = newEmpDept;
 								Console.WriteLine("Employee Department updated Successfully");
 								break;
 							case 4:
@@ -293,12 +294,15 @@ namespace Srikanth
 							Console.WriteLine("Descending Sort Successful");
 						}
 						break;
+					case 7:
+						Environment.Exit(0);
+						break;
 					default:
 						break;
 				}
 				do
 				{
-					Console.Write("Do you wish to continue - YES or NO: ");
+					Console.Write("Do you wish to continue - YES (y) or NO (n): ");
 					userResponse = Console.ReadLine().ToUpper();
 				} while (userResponse != "YES" && userResponse != "NO" && userResponse != "Y" && userResponse != "N");
 			} while (userResponse == "YES" || userResponse == "Y");
